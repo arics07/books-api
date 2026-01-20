@@ -1,0 +1,23 @@
+{
+    "info": {
+        "name": "Books Database",
+        "version": 1.0,
+        "total": 2 
+    },
+
+    "books": [
+        {
+            "id": 1,
+            "title": "Emma",
+            "author": "Jane Austen",
+            "year": 1815
+        },
+
+        {
+            "id": 2,
+            "title": "Estudio en escarlata",
+            "author": "Arthur Conan Doyle",
+            "year": 1887
+        }
+    ]
+}
