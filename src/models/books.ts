@@ -77,7 +77,7 @@ export class BooksModel {
     static deleteBook(id: string): boolean {
         //Lee el JSON y busca por id
         const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        const index = data.books.findIndex((book: Book) => book.id === id);
+        const index = data.books.findIndex((book: Book) => book.id.toString() === id);
 
         //Si no encuentra el id, devuelve false
         if (index === -1) return false;

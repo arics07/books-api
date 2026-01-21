@@ -1,23 +1,27 @@
 {
-    "info": {
-        "name": "Books Database",
-        "version": 1.0,
-        "total": 2 
+  "info": {
+    "name": "Books Database",
+    "version": 1,
+    "total": 3
+  },
+  "books": [
+    {
+      "id": "1",
+      "title": "Estudio en escarlata",
+      "author": "Arthur Conan Doyle",
+      "year": 1887
     },
-
-    "books": [
-        {
-            "id": 1,
-            "title": "Emma",
-            "author": "Jane Austen",
-            "year": 1815
-        },
-
-        {
-            "id": 2,
-            "title": "Estudio en escarlata",
-            "author": "Arthur Conan Doyle",
-            "year": 1887
-        }
-    ]
+    {
+      "id": "2",
+      "title": "1984",
+      "author": "George Orwell",
+      "year": 1948
+    },
+    {
+      "id": "3",
+      "title": "Emma",
+      "author": "Jane Austen",
+      "year": 1815
+    }
+  ]
 }

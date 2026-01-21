@@ -1,16 +1,19 @@
 //Importo los tipos específicos de express
 import { Request, Response, NextFunction } from "express";
+import jwt from 'jsonwebtoken';
+import { SECRET_KEY } from "../config/config";
+
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
-    const token = req.headers['authorization'];
+    const authHeader = req.headers['authorization'];
 
-    //Verifica si existe el token y es el requerido
-    if (!token || token !== '123456') {
-        res.status(401).json({ error: 'No autorizado' });
-        return //Finaliza la ejecución
+    //El token llega en el formato: Bearer <Token>
+    const token = authHeader && authHeader.split(' ')[1];  //Si existe el encabezado, va a extraer el token
+
+    //Verifica si existe el token 
+    if (!token) {
+        res.status(401).json({ message: 'Token no proporcionado.' });
+        return;
     };
-
-    //Si pasa la verificación, continúa con el siguiente middleware
-    next();
 
 };
