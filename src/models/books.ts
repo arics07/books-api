@@ -31,6 +31,12 @@ export class BooksModel {
         return data.filter(libro => libro.author === author);
     };
 
+    //Obtener un libro por su ID
+    static getBookById(id: string): Book | undefined {
+        const data: Book[] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        return data.find(book => book.id === id);
+    };
+
     //Crear un libro (POST)
     static addBook(newBook: Book): Book {
         //Parseamos el archivo JSON
@@ -42,7 +48,7 @@ export class BooksModel {
         //Operador spread {...} se usa para combinar objetos
         const book = { ...newBook, id: newId};
         //La agrego a la BD
-        data.quotes.push(book);
+        data.books.push(book);
         //Incremento el contador de libros (total)
         data.info.total += 1;
 

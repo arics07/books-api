@@ -10,7 +10,7 @@ export const getAllBooks = (req: Request, res: Response): void => {
     //Llamamos al método
     const books = BooksModel.getAllBooks();
     //Enviamos los libros como rta en formato JSON
-    res.json(books);
+    res.status(200).json(books);
 };
 
 
@@ -18,6 +18,11 @@ export const getAllBooks = (req: Request, res: Response): void => {
 export const getBooksByAuthor = (req: Request, res: Response): void => {
     //Extraigo el parámetro author del endpoint
     const { author } = req.params;
+
+    if (!author || Array.isArray(author)) {
+        return
+    };
+
     //Llamo al modelo
     const books = BooksModel.getBooksByAuthor(author);
 
@@ -27,8 +32,28 @@ export const getBooksByAuthor = (req: Request, res: Response): void => {
     };
 
     //Si encuentra, envía la rta
-    res.json(books);
+    res.status(200).json(books)
 
+};
+
+
+//Controlador para obtener un libro por su ID
+export const getBookById = (req: Request, res: Response): void => {
+    //Extraemos el id de la ruta
+    const { id } = req.params;
+
+    if (!id || Array.isArray(id)) {
+        return
+    };
+
+    //Llamamos al método del modelo               
+    const book = BooksModel.getBookById(id); 
+
+    if (!book) {
+        res.status(404).json({ error: 'Libro no encontrado.' });
+    } else {
+        res.status(200).json(book);
+    }
 };
 
 
@@ -44,6 +69,11 @@ export const createBook = (req: Request, res: Response): void => {
 //Controlador para actualizar un libro
 export const updateBook = (req: Request, res: Response): void => {
     const { id } = req.params; //extraemos el paramentro id del endpoint
+
+    if (!id || Array.isArray(id)) {
+        return
+    };
+
     //Llamamos al método del modelo
     const updateBook = BooksModel.updateBook(id, req.body); 
 
@@ -54,7 +84,7 @@ export const updateBook = (req: Request, res: Response): void => {
     };
 
     //Devolvemos el libro actualizado
-    res.json(updateBook);
+    res.status(200).json(updateBook);
 
 };
 
@@ -63,6 +93,10 @@ export const updateBook = (req: Request, res: Response): void => {
 export const deleteBook = (req: Request, res: Response): void => {
     const { id } = req.params; //extraemos el paramentro id del endpoint
 
+    if (!id || Array.isArray(id)) {
+        return
+    };
+    
     //Llamamos al método del modelo
     const isDeleted = BooksModel.deleteBook(id);
 
@@ -73,6 +107,6 @@ export const deleteBook = (req: Request, res: Response): void => {
     }; 
 
     //Si es eliminado
-    res.status(204).send;
+    res.status(204).send();
 
 };

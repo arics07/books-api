@@ -4,8 +4,8 @@ import { Request, Response, NextFunction } from "express";
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
     const token = req.headers['authorization'];
 
-    //Verifica si existe el token
-    if (!token || token !== 'Bearer my-secret-token') {
+    //Verifica si existe el token y es el requerido
+    if (!token || token !== '123456') {
         res.status(401).json({ error: 'No autorizado' });
         return //Finaliza la ejecución
     };
