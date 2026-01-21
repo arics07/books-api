@@ -21,20 +21,20 @@ export class BooksModel {
     static getAllBooks(): Book[] {
         //Obtener todos los datos desde nuestra BD
         const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        return data.books; //retorna la parte de books, no de info
+        return data.books; //retorna la parte de books, no de info (array de libros)
     };
 
     //Obtener y leer todos los libros de un autor determinado (GET)
     static getBooksByAuthor(author: string): Book[] {
         //Obtener todos los datos desde nuestra BD
-        const data: Book[] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        return data.filter(libro => libro.author === author);
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        return data.books.filter((libro: Book) => libro.author === author);
     };
 
     //Obtener un libro por su ID
     static getBookById(id: string): Book | undefined {
-        const data: Book[] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        return data.find(book => book.id === id);
+        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        return data.books.find((book: Book) => book.id.toString() === id);
     };
 
     //Crear un libro (POST)

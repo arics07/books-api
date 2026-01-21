@@ -23,11 +23,11 @@ const router: Router = Router();
 //GET para obtener todos los libros
 router.get('/', getAllBooks);
 
-//GET para obtener un libro por autor
-router.get('/books/:author', getBooksByAuthor);
-
 // GET para obtener un libro por ID
 router.get('/:id', getBookById);
+
+//GET para obtener un libro por autor
+//router.get('/:author', getBooksByAuthor);
 
 //POST para crear un libro nuevo
 router.post('/', authMiddleware, validateBook, createBook);
